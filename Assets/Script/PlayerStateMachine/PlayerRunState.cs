@@ -7,7 +7,7 @@ public class PlayerRunState : PlayerBaseState
     public PlayerRunState(PlayerStateMachine currentContext, PlayerStateFactory playerStateFactory) : base(currentContext, playerStateFactory) { }
     public override void EnterState() {
         Debug.Log("Run!");
-        Ctx.M_Speed = 8f;
+        Ctx.M_Speed = 3.5f;
     }
     public override void UpdateState() { 
         

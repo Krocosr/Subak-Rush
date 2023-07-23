@@ -12,6 +12,9 @@ public class CameraFollow : MonoBehaviour
     private float _smoothTime = .5f;
     [SerializeField]
     private Vector3 p_pos;
+    [SerializeField]
+    private float _offsetX;
+    [SerializeField]
     private float _offsetZ = 8f;
     [SerializeField]
     private float _offsetY;
@@ -25,7 +28,7 @@ public class CameraFollow : MonoBehaviour
 
     void camSmoothen()
     {
-        p_pos.x = 0;
+        p_pos.x = _offsetX;
         p_pos.z = -_offsetZ;
         p_pos.y = _offsetY;
 

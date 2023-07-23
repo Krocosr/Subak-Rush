@@ -27,9 +27,8 @@ public class PlayerStateMachine : MonoBehaviour
     public float _startAnimTime = 0.3f;
     [Range(0, 1f)]
     public float _stopAnimTime = 0f;
-    public float allowPlayerRotation = 0.1f;
 
-    PlayerBaseState _currentState; 
+    PlayerBaseState _currentState;
     PlayerStateFactory _states;
 
     [Header("Tracker")]
@@ -42,14 +41,14 @@ public class PlayerStateMachine : MonoBehaviour
 
     #region Singleton
     public Joystick Joystick { get { return _joystick; } }
-    public CharacterController CharacterController { get { return _characterController;} }
+    public CharacterController CharacterController { get { return _characterController; } }
     public Vector3 DesiredMoveDirection { get { return _desiredMoveDirection; } }
-    public bool IsMoving { get { return _isMoving; }  }
+    public bool IsMoving { get { return _isMoving; } }
     public bool IsInteracting { get { return _isInteracting; } }
     public Animator Animator { get { return _animator; } }
     public float A_Speed { get { a_speed = new Vector2(_currentMovement.x, _currentMovement.z).sqrMagnitude; return a_speed; } }
     public float M_Speed { get { return m_speed; } set { m_speed = value; } }
-    public float StartAnimTime { get { return _startAnimTime; }  set { _startAnimTime = value; } }
+    public float StartAnimTime { get { return _startAnimTime; } set { _startAnimTime = value; } }
     public float StopAnimTime { get { return _stopAnimTime; } set { _stopAnimTime = value; } }
     public PlayerBaseState CurrentState { get { return _currentState; } set { _currentState = value; } }
     public bool IsRunInput { get { return _isRunInput; } }
@@ -91,6 +90,12 @@ public class PlayerStateMachine : MonoBehaviour
         right.Normalize();
 
         _desiredMoveDirection = forward * _joystick.Vertical + right * _joystick.Horizontal;
+
+        if (_joystick.Horizontal > .5f || _joystick.Horizontal < -.5f || _joystick.Vertical > .7f || _joystick.Vertical < -.7f)
+        {
+            _isRunInput = true;
+        }
+        else _isRunInput = false;
     }
 
 
@@ -113,9 +118,9 @@ public class PlayerStateMachine : MonoBehaviour
             //Ghost
             Vector3 ghostSpeed;
 
-            ghostSpeed.x = _desiredMoveDirection.x + (_joystick.Horizontal * 2.2f);
+            ghostSpeed.x = _desiredMoveDirection.x + (_joystick.Horizontal * .5f);
             ghostSpeed.y = _desiredMoveDirection.y + .5f;
-            ghostSpeed.z = _desiredMoveDirection.z + (_joystick.Vertical * 3.5f);
+            ghostSpeed.z = _desiredMoveDirection.z + (_joystick.Vertical * 1.5f);
 
             var nextPos = transform.position + ghostSpeed;
             _targetTracker.transform.rotation = transform.rotation;
@@ -135,8 +140,8 @@ public class PlayerStateMachine : MonoBehaviour
         else
         {
             _currentMovement.y += gravity * Time.deltaTime;
-            Vector3 falling = new Vector3(0f, _currentMovement.y,0f);
-            _characterController.Move (falling);
+            Vector3 falling = new Vector3(0f, _currentMovement.y, 0f);
+            _characterController.Move(falling);
         }
     }
 

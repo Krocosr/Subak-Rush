@@ -10,7 +10,7 @@ public class PlayerWalkState : PlayerBaseState
 
     public override void EnterState() {
         Debug.Log("<color=green>Walk!</color>");
-        Ctx.M_Speed = 7;
+        Ctx.M_Speed = 3;
     }
     public override void UpdateState() {
         CheckSwitchState();
