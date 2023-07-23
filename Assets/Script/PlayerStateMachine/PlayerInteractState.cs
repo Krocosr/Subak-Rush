@@ -29,5 +29,8 @@ public class PlayerInteractState : PlayerBaseState
         // npc.CancelAction();
         }
     }
-    public override void InitializeSubState() { }
+    public override void InitializeSubState() { 
+    
+    
+    }
 }
