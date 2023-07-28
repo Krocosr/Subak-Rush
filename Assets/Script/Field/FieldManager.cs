@@ -4,6 +4,7 @@ using UnityEngine;
 using originalTimer;
 using UnityEngine.UIElements;
 using System;
+using System.ComponentModel;
 
 enum FieldStates
 {
@@ -47,7 +48,6 @@ public class FieldBaseState : Field
 
     public override void EnterState()
     {
-        InitializeSubState();
     }
     public override void UpdateState()
     {
@@ -72,10 +72,14 @@ public class FieldSoilState : Field
     public FieldSoilState(FieldBase currentContext, FieldManager FieldStateFactory) : base(currentContext, FieldStateFactory)
     {
     }
-
     public override void EnterState()
     {
-        Debug.Log("\"<color=blue>SoilState!</color>\"");
+        Vector3 _transformBaseValue = new Vector3 (0,-0.05f,0);
+        Ctx.PlowObj.transform.localPosition = _transformBaseValue;
+        Ctx.IsPlanted = false;
+        Ctx.IsPlowed = false;
+
+        Debug.Log("SoilState"); 
     }
     public override void UpdateState()
     {
@@ -116,7 +120,7 @@ public class FieldPlowedState : Field
     public override void UpdateState()
     {
         CheckSwitchState();
-
+        
         while (speed < .5f) 
         {
         speed += Time.deltaTime * .04f;
@@ -134,7 +138,6 @@ public class FieldPlowedState : Field
     }
     public override void InitializeSubState() 
     {
-
     }
 }
 
@@ -143,28 +146,32 @@ public class FieldPlantedState : Field
     public FieldPlantedState(FieldBase currentContext, FieldManager FieldStateFactory) : base(currentContext, FieldStateFactory)
     {}
     Timer timer;
+
     public override void EnterState() 
-    { 
-        timer = new Timer(0);
+    {
+        timer = new Timer(3);
+        timer.isCounting = true; 
+        Debug.Log("PlantedState");
     }
+
     public override void UpdateState()
     {
         CheckSwitchState();
-
-        timer.isCounting = true;
         while (timer.isCounting)
         {
-            timer.IncrementTimer(Time.fixedDeltaTime, 5);
+            timer.DecrementTimer(Time.deltaTime);
             Debug.Log(Math.Round(timer.RemainingSeconds));
+            return;
         }
-
-        CheckSwitchState();
     }
     public override void ExitStage() { }
     public override void CheckSwitchState()
     {
-        if (!timer.isCounting)
+        if (!timer.isCounting && !Ctx.HasWater)
         {
+            SwitchState(States.Soil());
+        }
+        else if (!timer.isCounting && Ctx.HasWater) {
             SwitchState(States.Bloom());
         }
     }
@@ -177,9 +184,13 @@ public class FieldBloomState : Field
 {
     public FieldBloomState(FieldBase currentContext, FieldManager FieldStateFactory) : base(currentContext, FieldStateFactory) { }
 
-    public override void EnterState() 
+    GameObject _seedType;
+    public override void EnterState()
     {
-        Debug.Log("\"<color=blue>BloomState!</color>\"");
+        Debug.Log("Blooming");
+        _seedType = Ctx.SeedType;
+        Debug.Log(_seedType);
+        FieldBase.IntantiatePrefab(_seedType, Ctx.transform.position);
     }
     public override void UpdateState() 
     {

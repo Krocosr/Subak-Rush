@@ -44,20 +44,17 @@ public class Switch : MonoBehaviour, IInteractable
 
     public void Action(int id) 
     {
-        if (id == 1)
+        if (id == 0)
         {
             _gateManager[0].HasWater = !_gateManager[0].HasWater;
             _gateState[0].SetActive(false);
             _gateState[1].SetActive(true);
             Debug.Log(_gateManager[0].HasWater);
-            StartCoroutine("WaterDrain", id);
+            StartCoroutine("WaterFill", id);
 
-            this.id = 2;
-
-
-            this.enabled = false;
+            this.id = 3;
         }
-        if (id == 2 && _gateManager[0].HasWater == true)
+        if (id == 1 && _gateManager[0].HasWater == true)
         {
             _gateState[0].SetActive(false);
             _gateState[1].SetActive(true);
@@ -66,6 +63,8 @@ public class Switch : MonoBehaviour, IInteractable
                 Debug.Log("Switched");
                 Debug.Log(gate.HasWater);
             }
+            StartCoroutine("WaterFill", id);
+            this.id = 3;
         }
     }
 
@@ -75,18 +74,18 @@ public class Switch : MonoBehaviour, IInteractable
     private Vector3 newPos;
 
 
-    IEnumerator WaterDrain()
+    IEnumerator WaterFill(int id)
     {
         Transform descend;
         Transform childObj;
+        id = this.id;
 
-        for (int i = 0; i < _gateManager[0].transform.childCount; i++)
+        for (int i = 0; i < _gateManager[id].transform.childCount; i++)
         {
-            childObj = _gateManager[0].transform;
+            childObj = _gateManager[id].transform;
             
             descend = childObj.GetChild(i).Find("water");
             _waterObj.Add(descend);
-            Debug.Log(childObj);
             yield return null;
   
         }
@@ -94,12 +93,21 @@ public class Switch : MonoBehaviour, IInteractable
         {
             child.transform.localPosition = Vector3.Lerp(oldPos, newPos, Time.fixedDeltaTime* .5f);
 
-         yield return new WaitForSeconds(.1f);
+         yield return new WaitForSeconds(.05f);
         }
-        
-
         Debug.Log("Coroutine Stoped!");
-        StopCoroutine("WaterDrain");
 
+        StopCoroutine("WaterFill");
+    }
+
+    IEnumerator WaterDrain()
+    {
+        foreach (Transform child in _waterObj)
+        {
+            child.transform.localPosition = Vector3.Lerp(newPos, oldPos, Time.fixedDeltaTime * .5f);
+
+            yield return new WaitForSeconds(.05f);
+        }
+        StopCoroutine("WaterDrain");
     }
 }

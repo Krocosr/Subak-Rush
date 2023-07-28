@@ -1,7 +1,6 @@
 ﻿using Project.Data;
 using UnityEngine;
-using UnityEngine.UIElements;
-using static UnityEditor.Progress;
+
 
 
 public class Inventory : MonoBehaviour

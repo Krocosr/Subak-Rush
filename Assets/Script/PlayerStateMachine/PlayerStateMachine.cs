@@ -118,9 +118,9 @@ public class PlayerStateMachine : MonoBehaviour
             //Ghost
             Vector3 ghostSpeed;
 
-            ghostSpeed.x = _desiredMoveDirection.x + (_joystick.Horizontal * .5f);
+            ghostSpeed.x = _desiredMoveDirection.x * 1.5f;
             ghostSpeed.y = _desiredMoveDirection.y + .5f;
-            ghostSpeed.z = _desiredMoveDirection.z + (_joystick.Vertical * 1.5f);
+            ghostSpeed.z = _desiredMoveDirection.z * 2f;
 
             var nextPos = transform.position + ghostSpeed;
             _targetTracker.transform.rotation = transform.rotation;

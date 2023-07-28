@@ -43,7 +43,6 @@ public class Item : MonoBehaviour, IInteractable
             yield return null;
         }
         Action(_itemData.id);
-        yield return new WaitForSeconds(1);
 
         yield return 39;
     }

@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{260A2AC4-2FA9-CEF0-A00B-065DA34FD629}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScriptableObject", "ScriptableObject.csproj", "{2E2D3122-BCAF-17CA-F11F-5345437E5751}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-Editor", "Assembly-CSharp-Editor.csproj", "{12106AD7-F7CD-DF63-BC9A-593E54ED997F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{774E7B4B-D06F-4D9B-B0EC-5D5B012BFA84}"
@@ -20,6 +22,10 @@ Global
 		{260A2AC4-2FA9-CEF0-A00B-065DA34FD629}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{260A2AC4-2FA9-CEF0-A00B-065DA34FD629}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{260A2AC4-2FA9-CEF0-A00B-065DA34FD629}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E2D3122-BCAF-17CA-F11F-5345437E5751}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E2D3122-BCAF-17CA-F11F-5345437E5751}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E2D3122-BCAF-17CA-F11F-5345437E5751}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E2D3122-BCAF-17CA-F11F-5345437E5751}.Release|Any CPU.Build.0 = Release|Any CPU
 		{12106AD7-F7CD-DF63-BC9A-593E54ED997F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{12106AD7-F7CD-DF63-BC9A-593E54ED997F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{12106AD7-F7CD-DF63-BC9A-593E54ED997F}.Release|Any CPU.ActiveCfg = Release|Any CPU
