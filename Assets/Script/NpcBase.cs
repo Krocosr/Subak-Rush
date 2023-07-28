@@ -11,6 +11,8 @@ public class NpcBase : MonoBehaviour, IInteractable
 
     public Timer timer;
 
+    public int id;
+
     IEnumerator StartTimer(Timer timer)
     {
         timer.isCounting = true;
@@ -20,13 +22,13 @@ public class NpcBase : MonoBehaviour, IInteractable
             Debug.Log(Math.Round(timer.RemainingSeconds));
             yield return null;
         }
-        Action();
+        Action(id);
         yield return new WaitForSeconds(1);
      
         StartCoroutine("StartTimer", new Timer(_duration));
     }
 
-    public void Action()
+    public void Action(int id)
     {
         Debug.Log("<color=blue> Seedtype :</color>" + _seedType);
     }

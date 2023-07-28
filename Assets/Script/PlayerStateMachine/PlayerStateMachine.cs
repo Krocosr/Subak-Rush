@@ -124,7 +124,7 @@ public class PlayerStateMachine : MonoBehaviour
 
             var nextPos = transform.position + ghostSpeed;
             _targetTracker.transform.rotation = transform.rotation;
-            _targetTracker.transform.position = Vector3.SmoothDamp(_targetTracker.transform.position, nextPos, ref _velocity, Time.fixedDeltaTime * (M_Speed * 1.5f));
+            _targetTracker.transform.position = Vector3.SmoothDamp(_targetTracker.transform.position, nextPos, ref _velocity, Time.fixedDeltaTime * (M_Speed * 3f));
         }
         else
             _targetTracker.transform.position = Vector3.SmoothDamp(_targetTracker.transform.position, transform.position, ref _velocity, _smoothTime);
@@ -153,6 +153,7 @@ public class PlayerStateMachine : MonoBehaviour
             interact.onEnter();
             _isInteracting = true;
         }
+
     }
     private void OnTriggerExit(Collider other)
     {

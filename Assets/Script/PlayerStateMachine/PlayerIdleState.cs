@@ -6,9 +6,7 @@ public class PlayerIdleState : PlayerBaseState
 {
     public PlayerIdleState(PlayerStateMachine currentContext, PlayerStateFactory playerStateFactory) : base(currentContext, playerStateFactory) { }
     public override void EnterState() {
-
         Debug.Log("<color=green>Idle!</color>");
-        
     }
     public override void UpdateState() {
         CheckSwitchState();

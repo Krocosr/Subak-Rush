@@ -6,5 +6,5 @@ public interface IInteractable
 {
     void onEnter();
     void onExit();
-    void Action();
+    void Action(int id);
 }

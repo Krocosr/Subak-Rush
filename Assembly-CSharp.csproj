@@ -57,7 +57,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Script\PlayerStateMachine\PlayerInteractState.cs" />
+    <Compile Include="Assets\Script\Field\Field.cs" />
     <Compile Include="Assets\Script\PlayerStateMachine\PlayerIdleState.cs" />
+    <Compile Include="Assets\Script\GateHandler.cs" />
     <Compile Include="Assets\Script\PlayerStateMachine\PlayerWalkState.cs" />
     <Compile Include="Assets\Joystick Pack\Scripts\Joysticks\FloatingJoystick.cs" />
     <Compile Include="Assets\Script\Inventory.cs" />
@@ -69,16 +71,20 @@
     <Compile Include="Assets\Script\Cooldown.cs" />
     <Compile Include="Assets\Script\Timer.cs" />
     <Compile Include="Assets\Script\NpcBase.cs" />
+    <Compile Include="Assets\Script\ScriptableObject\ItemData.cs" />
     <Compile Include="Assets\Script\Interface\IInteractable.cs" />
+    <Compile Include="Assets\Script\Switch.cs" />
     <Compile Include="Assets\Script\CamShift.cs" />
+    <Compile Include="Assets\Script\Item.cs" />
     <Compile Include="Assets\Script\PlayerStateMachine\PlayerBaseState.cs" />
+    <Compile Include="Assets\Script\Field\FieldManager.cs" />
     <Compile Include="Assets\Joystick Pack\Examples\JoystickPlayerExample.cs" />
     <Compile Include="Assets\Joystick Pack\Scripts\Base\Joystick.cs" />
     <Compile Include="Assets\Joystick Pack\Examples\JoystickSetterExample.cs" />
-    <Compile Include="Assets\Script\Spawner.cs" />
     <Compile Include="Assets\Joystick Pack\Scripts\Joysticks\FixedJoystick.cs" />
     <Compile Include="Assets\Script\PlayerStateMachine\PlayerCastingState.cs" />
     <Compile Include="Assets\Joystick Pack\Scripts\Joysticks\DynamicJoystick.cs" />
+    <Compile Include="Assets\Script\Field\FieldBase.cs" />
     <Compile Include="Assets\Script\PlayerStateMachine\PlayerRunState.cs" />
   </ItemGroup>
   <ItemGroup>
